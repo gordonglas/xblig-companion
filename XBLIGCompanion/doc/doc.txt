@@ -1,0 +1,497 @@
+TODO:
+
+-test one last time on HTC Incredible
+-test donation link in app
+
+-finish website
+  NO-company icon (tokki drawing)
+  -take screenshots of app for site and Google Play market
+    x-use nice skins for homepage
+  -change TokkiSoft twitter account's avatar to match site icon
+
+-make Tokki Soft facebook page (using gglas@tokkisoft.com)
+  -make sure link is same in the app
+
+-Before Release:
+  x-change SUPPORT_EMAIL (support@tokkisoft.com)
+  -change package names
+  -change PACKAGE_PREFIX
+  -search and change all instances of "com.tokkigames"
+  x-make sure it's ok to leave Log calls in, otherwise comment out.
+  -read up on / sign up for Google Play account using.. admin@tokkisoft.com??
+    -obfuscation?
+    -crash reports? (read up on it)
+
+---------------------------------------------------------------
+
+DONE
+
+x-Search box 9patch
+
+x-waiting on casey to create MX records for tokkisoft.com
+  x-once he's done
+  x-verify that email works
+     x-log into godaddy to check status
+     x-test sending an email (can use web interface)
+  x-set up new paypal account using "payments@tokkisoft.com"
+     x-create new donation link
+        x-update donation link in AboutActivity
+        -test donation link in app (test on monday)
+  x-change TokkiSoft twitter account's email address
+  -change TokkiSoft twitter account's avatar to match site icon
+  -make Tokki Soft facebook page (using gglas@tokkisoft.com)
+    -make sure link is same in the app
+
+ERROR HANDLING:
+-When image fails to load, you will see this:
+  Could not get remote ad image
+  E/ImageLoader(2817): java.net.SocketException: recvfrom failed: ECONNRESET (Connection reset by peer)
+  -perhaps we need to try grabbing the image again??
+
+
+MENU
+http://developer.android.com/guide/topics/ui/menus.html
+x-about page
+  -Tokki Soft info, link to site and twitter
+  -TEXT:
+  XBLIG (Xbox Live Indie Games) Companion was created in hopes to make more people aware of the XBLIG Channel on your Xbox. The XBLIG Channel (found on your Xbox 360 dashboard) has many great games that you may have never heard of. We hope to change that with this app.
+
+  The Android version of XBLIG Companion was created by <LINK>Tokki Soft</LINK>. The original Windows Phone 7 version was created by <LINK>Eat Studios</LINK>.
+
+  <LINK>Follow TokkiSoft on Twitter</LINK>
+
+  If you like the app, you can support us by making a donation at <LINK>tokkisoft.com</LINK>.
+
+TESTING
+-Infinite Scrolling
+  -test case when user scrolls down, load more request is triggered, but while loading more request is happening, user presses refresh button
+   Can test this with a sleep in the request
+-ImageLoader / Memory / Battery / Network usage
+  -monitor usage while using the app for a long time
+  -set bitmap references to null where appropriate so bitmap pixel data can be garbage collected.
+    x-DO NOT CALL Bitmap.Recycle. Android apparently reuses pixel data for same image URLs.
+    -double check to make sure all bitmap references are being nulled out (esp on queueHash object)
+
+N-options/settings menu activity (see something like "preferences activity" info in Professional Android 2 ebook
+  -accessible via menu
+  -option to clear cache (delete all images) since the "clear cache" function in Settings doesn't clear it.
+   (it only gets cleared automatically upon uninstall of the app)
+     -might not need to do this if using internal cache. Test it.
+
+x-Finish GameActivity fragments
+  x-each fragment class needs to implement IObserver and attach to the GameActivityRequestSubject
+   so they can be notified when the web request is complete.
+  x-show spinners on each of the fragments until data is loaded
+  x-handle onClicks of links to go to next activities
+    x-youtube link
+    x-marketplace link
+    x-genre link
+       x-set title to the genre 
+    x-developer link
+  x-only allow max of 4 screenshots to be shown to prevent memory issues.
+  x-handle onClick of screenshots to go to "fullscreen" image activity that allows you to cycle through screenshots (use the built-in image-cycling activity/view)
+
+x-Search Activity
+  x-move search box and button onto the action bar.
+  x-should never have "empty response" errors. Probably should get rid of ALL of them (Don't consider it an error)
+  x-fix error messages to say "click Search" instead of "refresh"
+
+x-Get screenshots looking nicer (take up full width while maintaining aspect ratio)
+x-Padding on bottom of links.
+
+N-auto refresh if app is resumed and has been open for xx hours? (in onResume, check a date field?)
+
+x-ImageLoader
+ x-add support for internal disk cache (getCacheDir)
+ x-support for external (SD card, etc) disk cache
+ x-clear image from memory cache if it's too old
+ x-clear image from disk cache if it's too old
+ x-delete older entries in memory cache if within reasonable space limit (5 MB?) (try deleting old first)
+ x-delete older entries in disk cache if within reasonable space limit (5 MB?) (try deleting old first)
+ x-make ImageLoader object global so it doesn't grab from net every time we go to that activity
+ x-on initial creation of image loader, delete old images from disk cache
+x-use a placeholder image
+
+x-finish New Game views
+ x-stars
+ x-add home button on left of title in action bar (make sure clicking it "ignores" the backstack)
+ x-get style working so the onclick looks like the home activity onclicks (just had to add [android:background="@drawable/basic_item_selector"] to the item.xml
+ x-onclick of a game takes you to inner activity
+x-make action bar taller
+x-put a margin/space between activity indicator and text below it (padding isn't working on Galaxy Nexus).
+
+
+---------------------------------------------------------------
+Noms Rest Calls:
+https://docs.google.com/spreadsheet/ccc?key=0AqkegGZiEU6SdGpCdHNJVVhMYW9ZSkdkTnh2Q0l0WUE
+-----------
+
+http://noms.apphb.com/Xblig/GameList?St={int}&Skip={int}&Num={int}
+St == list type, 0 for GamesByUpdatedOn, 1 for GamesByReleasedOn, 2 for GamesByRating
+
+New Games
+http://noms.apphb.com/Xblig/GameList?St=1&Skip=0&Num=10
+http://noms.apphb.com/Xblig/GameList?St=1&Skip=10&Num=10
+
+Recently Updated Games
+http://noms.apphb.com/Xblig/GameList?St=0&Skip=0&Num=10
+
+Games By Genre
+http://noms.apphb.com/Xblig/GenreList
+
+Games By Rating
+http://noms.apphb.com/Xblig/GameList?St=2&Skip=0&Num=10
+
+-------
+Individual Game
+http://noms.apphb.com/Xblig/GetGame?id=2574
+
+-------
+GameGenreList
+http://noms.apphb.com/Xblig/GameGenreList?Genre=10&Skip=0&Num=10
+
+-------
+GameListByDev
+http://noms.apphb.com/Xblig/GameListByDev?id=277
+http://noms.apphb.com/Xblig/GameListByDev?id=197
+
+-------
+PromoInfo (PickInfo)
+http://noms.apphb.com/Xblig/PromoInfo?Promo=0
+
+-------
+PromoGames (PickGames)
+http://noms.apphb.com/Xblig/PromotedList?Promo=0&Skip=0&Num10
+
+-------
+SearchGameList
+http://noms.apphb.com/Xblig/SearchGameList?Term=Rain&Skip=0&Num=10
+
+-------
+SearchDevList
+http://noms.apphb.com/Xblig/SearchDevList?Term=Studio&Skip=0&Num=10
+
+
+---------------------------------------------------------------
+SearchDevList
+
+[{
+    "Id": 519,
+    "Name": "2.0 Studios"
+}, {
+    "Id": 489,
+    "Name": "Aeternus Studios"
+}, {
+    "Id": 256,
+    "Name": "Algitt Studios"
+}, {
+    "Id": 177,
+    "Name": "AwesomeGamesStudio"
+}, {
+    "Id": 1017,
+    "Name": "Bad Egg Studios"
+}, {
+    "Id": 373,
+    "Name": "Barkers Crest Studio"
+}, {
+    "Id": 273,
+    "Name": "Bedroom Studio Entertainment"
+}, {
+    "Id": 1436,
+    "Name": "BentoStudio"
+}, {
+    "Id": 378,
+    "Name": "BigBlackBlock Gamestudio"
+}, {
+    "Id": 396,
+    "Name": "BINANIC STUDIO"
+}]
+
+PromoInfo
+
+{
+    "Id": 0,
+    "PromotionName": "Dev Picks",
+    "PromotionDisplayHeader": "dev picks",
+    "WebSite": "http://www.eat-studios.com",
+    "TwitterHandle": "EatStudios",
+    "Info": "Eleventy-Aught Twelve Studios brings you a hand picked selection of games that have been polled by the XBLIG developer community."
+}
+
+New Games & GameGenreList & SearchGameList
+
+[{
+    "Id": 2583,
+    "Name": "Edgeland",
+    "BoxArt": "http://static.gamemarx.com/games/images/66acd000-77fe-1000-9115-d80258550b9b/lg_boxart.jpg",
+    "Score": 0.00,
+    "Votes": 0
+}, {
+    "Id": 2584,
+    "Name": "Blaster",
+    "BoxArt": "http://static.gamemarx.com/games/images/66acd000-77fe-1000-9115-d80258550b9c/lg_boxart.jpg",
+    "Score": 0.00,
+    "Votes": 0
+}, {
+    "Id": 2582,
+    "Name": "Fallen Angel",
+    "BoxArt": "http://static.gamemarx.com/games/images/66acd000-77fe-1000-9115-d80258550b9a/lg_boxart.jpg",
+    "Score": 0.00,
+    "Votes": 0
+}, {
+    "Id": 2585,
+    "Name": "Pacific Wings",
+    "BoxArt": "http://static.gamemarx.com/games/images/66acd000-77fe-1000-9115-d80258550b9d/lg_boxart.jpg",
+    "Score": 0.00,
+    "Votes": 0
+}, {
+    "Id": 2581,
+    "Name": "Sunflower farm",
+    "BoxArt": "http://static.gamemarx.com/games/images/66acd000-77fe-1000-9115-d80258550b99/lg_boxart.jpg",
+    "Score": 3.00,
+    "Votes": 16
+}, {
+    "Id": 2579,
+    "Name": "2012 Athletics Tournament",
+    "BoxArt": "http://static.gamemarx.com/games/images/66acd000-77fe-1000-9115-d80258550b97/lg_boxart.jpg",
+    "Score": 0.00,
+    "Votes": 0
+}, {
+    "Id": 2580,
+    "Name": "8 Ball Champion LIVE",
+    "BoxArt": "http://static.gamemarx.com/games/images/66acd000-77fe-1000-9115-d80258550b98/lg_boxart.jpg",
+    "Score": 0.00,
+    "Votes": 0
+}, {
+    "Id": 2576,
+    "Name": "The Undead Syndrome",
+    "BoxArt": "http://static.gamemarx.com/games/images/66acd000-77fe-1000-9115-d80258550b94/lg_boxart.jpg",
+    "Score": 3.62,
+    "Votes": 57
+}, {
+    "Id": 2578,
+    "Name": "PING",
+    "BoxArt": "http://static.gamemarx.com/games/images/66acd000-77fe-1000-9115-d80258550b96/lg_boxart.jpg",
+    "Score": 3.75,
+    "Votes": 32
+}, {
+    "Id": 2577,
+    "Name": "Learn the U.S Presidents",
+    "BoxArt": "http://static.gamemarx.com/games/images/66acd000-77fe-1000-9115-d80258550b95/lg_boxart.jpg",
+    "Score": 2.57,
+    "Votes": 53
+}]
+
+-----------------------------------------------------------------------
+GAMES BY GENRE (list of Genres)
+
+[{
+    "Id": 10,
+    "Name": "Action & Adventure"
+}, {
+    "Id": 11,
+    "Name": "Card & Board"
+}, {
+    "Id": 8,
+    "Name": "Classics"
+}, {
+    "Id": 15,
+    "Name": "Educational"
+}, {
+    "Id": 12,
+    "Name": "Family"
+}, {
+    "Id": 14,
+    "Name": "Fighting"
+}, {
+    "Id": 13,
+    "Name": "Music"
+}, {
+    "Id": 7,
+    "Name": "Other"
+}, {
+    "Id": 5,
+    "Name": "Platformer"
+}, {
+    "Id": 4,
+    "Name": "Puzzle & Trivia"
+}, {
+    "Id": 9,
+    "Name": "Racing & Flying"
+}, {
+    "Id": 2,
+    "Name": "Role Playing"
+}, {
+    "Id": 1,
+    "Name": "Shooter"
+}, {
+    "Id": 3,
+    "Name": "Sports & Recreation"
+}, {
+    "Id": 6,
+    "Name": "Strategy & Simulation"
+}]
+
+-----------------------------------------------------------------------
+
+GET GAME
+
+{
+    "Id": 2584,
+    "Name": "Blaster",
+    "DeveloperId": 277,
+    "DeveloperName": "CoderSystems",
+    "GenreId": 5,
+    "GenreName": "Platformer",
+    "Info": "Blast your way through the alien creatures in this 2D Platform adventure.  Collect Crystals and DNA packs along the way from hidden locations.\nWeapon upgrades and giant bosses are all included in this 2D Platform Blaster.",
+    "MarketPlaceLink": "http://marketplace.xbox.com/games/media/66acd000-77fe-1000-9115-d80258550b9c",
+    "MsPointsCost": 80,
+    "DevInfo": "",
+    "Score": 0.00,
+    "Votes": 0,
+    "ReleasedOn": "\/Date(1343840400000)\/",
+    "UpdatedOn": "\/Date(1343840400000)\/",
+    "Images": [{
+        "Id": 13516,
+        "XbligGameId": 2584,
+        "ImageLink": "http://static.gamemarx.com/games/images/66acd000-77fe-1000-9115-d80258550b9c/lg_boxart.jpg",
+        "ImageType": 0
+    }, {
+        "Id": 13517,
+        "XbligGameId": 2584,
+        "ImageLink": "http://static.gamemarx.com/games/images/66acd000-77fe-1000-9115-d80258550b9c/lg_screen1.jpg",
+        "ImageType": 1
+    }, {
+        "Id": 13518,
+        "XbligGameId": 2584,
+        "ImageLink": "http://static.gamemarx.com/games/images/66acd000-77fe-1000-9115-d80258550b9c/lg_screen2.jpg",
+        "ImageType": 1
+    }, {
+        "Id": 13519,
+        "XbligGameId": 2584,
+        "ImageLink": "http://static.gamemarx.com/games/images/66acd000-77fe-1000-9115-d80258550b9c/lg_screen3.jpg",
+        "ImageType": 1
+    }, {
+        "Id": 13520,
+        "XbligGameId": 2584,
+        "ImageLink": "http://static.gamemarx.com/games/images/66acd000-77fe-1000-9115-d80258550b9c/lg_screen4.jpg",
+        "ImageType": 1
+    }],
+    "Videos": [{
+        "Id": 1145,
+        "XbligGameId": 2584,
+        "VidLink": "http://www.youtube.com/watch?v=eqyWdCVTwB8",
+        "VidType": 0
+    }]
+}
+
+-----------------
+
+Game Developer
+
+{
+    "Developer": {
+        "Id": 277,
+        "Name": "CoderSystems",
+        "Bio": "",
+        "Website": "http://www.retrocoders.co.uk/",
+        "TwitterHandle": "RetroCoders",
+        "FacebookPage": "",
+        "YouTubeChannel": "http://www.youtube.com/user/Codersys"
+    },
+    "Games": [{
+        "Id": 348,
+        "Name": "Adventures Of Sid",
+        "DeveloperId": 277,
+        "DeveloperName": "CoderSystems",
+        "GenreId": 5,
+        "GenreName": "Platformer",
+        "Info": "Go treasure hunting with Sid the Tomato! \n\nExplore 16 huge  levels across 4 exotic environments in this retro-styled 2D platforming blast from the past!! \n\nUse Sids flamethrower and cluster bombs to take out the crazed wildlife and open new paths with TNT!",
+        "MarketPlaceLink": "http://marketplace.xbox.com/games/media/66acd000-77fe-1000-9115-d8025855042a",
+        "MsPointsCost": 80,
+        "DevInfo": "",
+        "Score": 3.32,
+        "Votes": 408,
+        "ReleasedOn": "\/Date(1264348800000)\/",
+        "UpdatedOn": "\/Date(1334682000000)\/",
+        "Images": [{
+            "Id": 1661,
+            "XbligGameId": 348,
+            "ImageLink": "http://static.gamemarx.com/games/images/66acd000-77fe-1000-9115-d8025855042a/lg_boxart.jpg",
+            "ImageType": 0
+        }, {
+            "Id": 12093,
+            "XbligGameId": 348,
+            "ImageLink": "http://static.gamemarx.com/games/images/66acd000-77fe-1000-9115-d8025855042a/lg_screen1.jpg",
+            "ImageType": 1
+        }, {
+            "Id": 12094,
+            "XbligGameId": 348,
+            "ImageLink": "http://static.gamemarx.com/games/images/66acd000-77fe-1000-9115-d8025855042a/lg_screen2.jpg",
+            "ImageType": 1
+        }, {
+            "Id": 12095,
+            "XbligGameId": 348,
+            "ImageLink": "http://static.gamemarx.com/games/images/66acd000-77fe-1000-9115-d8025855042a/lg_screen3.jpg",
+            "ImageType": 1
+        }, {
+            "Id": 12096,
+            "XbligGameId": 348,
+            "ImageLink": "http://static.gamemarx.com/games/images/66acd000-77fe-1000-9115-d8025855042a/lg_screen4.jpg",
+            "ImageType": 1
+        }],
+        "Videos": [{
+            "Id": 192,
+            "XbligGameId": 348,
+            "VidLink": "http://www.youtube.com/watch?v=8X1nFlNTlKY",
+            "VidType": 0
+        }]
+    }, {
+        "Id": 2584,
+        "Name": "Blaster",
+        "DeveloperId": 277,
+        "DeveloperName": "CoderSystems",
+        "GenreId": 5,
+        "GenreName": "Platformer",
+        "Info": "Blast your way through the alien creatures in this 2D Platform adventure.  Collect Crystals and DNA packs along the way from hidden locations.\nWeapon upgrades and giant bosses are all included in this 2D Platform Blaster.",
+        "MarketPlaceLink": "http://marketplace.xbox.com/games/media/66acd000-77fe-1000-9115-d80258550b9c",
+        "MsPointsCost": 80,
+        "DevInfo": "",
+        "Score": 0.00,
+        "Votes": 0,
+        "ReleasedOn": "\/Date(1343840400000)\/",
+        "UpdatedOn": "\/Date(1343840400000)\/",
+        "Images": [{
+            "Id": 13516,
+            "XbligGameId": 2584,
+            "ImageLink": "http://static.gamemarx.com/games/images/66acd000-77fe-1000-9115-d80258550b9c/lg_boxart.jpg",
+            "ImageType": 0
+        }, {
+            "Id": 13517,
+            "XbligGameId": 2584,
+            "ImageLink": "http://static.gamemarx.com/games/images/66acd000-77fe-1000-9115-d80258550b9c/lg_screen1.jpg",
+            "ImageType": 1
+        }, {
+            "Id": 13518,
+            "XbligGameId": 2584,
+            "ImageLink": "http://static.gamemarx.com/games/images/66acd000-77fe-1000-9115-d80258550b9c/lg_screen2.jpg",
+            "ImageType": 1
+        }, {
+            "Id": 13519,
+            "XbligGameId": 2584,
+            "ImageLink": "http://static.gamemarx.com/games/images/66acd000-77fe-1000-9115-d80258550b9c/lg_screen3.jpg",
+            "ImageType": 1
+        }, {
+            "Id": 13520,
+            "XbligGameId": 2584,
+            "ImageLink": "http://static.gamemarx.com/games/images/66acd000-77fe-1000-9115-d80258550b9c/lg_screen4.jpg",
+            "ImageType": 1
+        }],
+        "Videos": [{
+            "Id": 1145,
+            "XbligGameId": 2584,
+            "VidLink": "http://www.youtube.com/watch?v=eqyWdCVTwB8",
+            "VidType": 0
+        }]
+    }]
+}

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<color name="red">#ff00</color>
+	<color name="green">#f0f0</color>
+	<color name="blue">#ffaecedd</color>
+	<color name="white">#ffff</color>
+	<color name="black">#f000</color>
+	<color name="actionbar1">#ffaecedd</color>
+	<color name="actionbar2">#ff738891</color>
+	<color name="grey">#ff404040</color>
+	<color name="text">#ff0f4a64</color>
+	<color name="cellselected">#ff8fa9b5</color>
+</resources>

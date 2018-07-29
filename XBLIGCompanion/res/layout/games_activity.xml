@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <com.tokkisoft.XBLIGCActionBar
+        android:id="@+id/tokkiActionBar"
+        android:layout_width="fill_parent"
+	    android:layout_height="42dp"
+	    android:background="@drawable/actionbar_selector"
+        />
+
+    <LinearLayout
+        android:id="@+id/progressLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:background="@color/blue" >
+
+        <ProgressBar
+            android:id="@+id/progress"
+            style="@android:style/Widget.ProgressBar.Large.Inverse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="15dp" />
+        <!-- android:id="@android:id/progress" -->
+        
+        <TextView
+            android:id="@+id/progressText"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textAppearance="@android:style/TextAppearance.Large.Inverse"
+            android:text="Retrieving data..."
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:textColor="@color/text" />
+    </LinearLayout>
+    
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
+    
+    <!-- android:divider="@color/blue"
+    android:dividerHeight="8dp" -->
+
+</LinearLayout>

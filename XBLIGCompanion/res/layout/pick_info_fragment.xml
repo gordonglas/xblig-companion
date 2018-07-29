@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="@color/blue" >
+    
+	<LinearLayout
+	        android:id="@+id/progressLayout"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="vertical"
+	        android:gravity="center_horizontal"
+	        android:visibility="gone" >
+
+        <ProgressBar
+            android:id="@+id/progress"
+            style="@android:style/Widget.ProgressBar.Large.Inverse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="15dp" />
+        <!-- android:id="@android:id/progress" -->
+        
+        <TextView
+            android:id="@+id/progressText"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textAppearance="@android:style/TextAppearance.Large.Inverse"
+            android:text="Retrieving data..."
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:textColor="@color/text" />
+    </LinearLayout>
+    
+	<ScrollView 
+	    android:id="@+id/dataLayout"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent" >
+	    
+	    <RelativeLayout
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:paddingLeft="10dp"
+		    android:paddingRight="10dp"
+		    android:paddingTop="8dp"
+		    android:paddingBottom="8dp" >
+
+	        <TextView
+	            android:id="@+id/websiteLabel"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:maxLines="1"
+	            android:text="Visit Website:"
+	            android:textAppearance="?android:attr/textAppearanceSmall"
+	            android:textColor="@color/text" />
+
+	        <TextView
+	            android:id="@+id/website"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_alignBaseline="@+id/websiteLabel"
+	            android:layout_alignBottom="@+id/websiteLabel"
+	            android:layout_marginLeft="23dp"
+	            android:layout_toRightOf="@+id/websiteLabel"
+	            android:maxLines="1"
+	            android:text="www.website.com" />
+	        
+	        <TextView
+	            android:id="@+id/twitterLabel"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_alignLeft="@+id/websiteLabel"
+	            android:layout_below="@+id/websiteLabel"
+	            android:layout_marginTop="6dp"
+	            android:maxLines="1"
+	            android:text="Follow me:"
+	            android:textAppearance="?android:attr/textAppearanceSmall"
+	            android:textColor="@color/text" />
+
+	        <TextView
+	            android:id="@+id/twitterHandle"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_alignBaseline="@+id/twitterLabel"
+	            android:layout_alignBottom="@+id/twitterLabel"
+	            android:layout_alignLeft="@+id/website"
+	            android:maxLines="1"
+	            android:text="TwitterHandle" />
+
+	        <TextView
+	            android:id="@+id/bio"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_alignLeft="@+id/twitterLabel"
+	            android:layout_below="@+id/twitterLabel"
+	            android:layout_marginTop="10dp"
+	            android:text="No information about this pick."
+	            android:textAppearance="?android:attr/textAppearanceMedium"
+	            android:textColor="@color/text" />
+	        
+	    </RelativeLayout>
+	</ScrollView>
+</LinearLayout>

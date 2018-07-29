@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="@color/white" >
+    
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="42dp"
+        android:background="@color/actionbar1" >
+
+        <Button
+	        android:id="@+id/actionBarButtonRefresh"
+	        style="?android:attr/buttonStyleSmall"
+	        android:layout_width="45dp"
+	        android:layout_height="41dp"
+	        android:layout_alignParentRight="true"
+	        android:layout_alignParentTop="true"
+	        android:background="@drawable/actionbar_selector_button_refresh"
+	        android:visibility="gone" />
+	
+	    <View
+	        android:id="@+id/actionBarSeparator1"
+	        android:layout_width="1dp"
+	        android:layout_height="41dp"
+	        android:layout_alignParentTop="true"
+	        android:layout_toLeftOf="@+id/actionBarButtonRefresh"
+	        android:background="@color/grey"
+	        android:visibility="gone" />
+	
+	    <Button
+	        android:id="@+id/actionBarButtonSearch"
+	        style="?android:attr/buttonStyleSmall"
+	        android:layout_width="45dp"
+	        android:layout_height="41dp"
+	        android:layout_alignParentTop="true"
+	        android:layout_toLeftOf="@+id/actionBarSeparator1"
+	        android:background="@drawable/actionbar_selector_button_search"
+	        android:visibility="gone" />
+	    
+	    <View
+	        android:id="@+id/actionBarSeparator3"
+	        android:layout_width="1dp"
+	        android:layout_height="41dp"
+	        android:layout_alignParentTop="true"
+	        android:layout_toLeftOf="@+id/actionBarButtonSearch"
+	        android:background="@color/grey"
+	        android:visibility="gone" />
+	    
+	    <TextView
+	        android:id="@+id/actionBarText"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_centerVertical="true"
+	        android:layout_marginLeft="14dp"
+	        android:layout_toRightOf="@+id/actionBarSeparator2"
+	        android:text="XBLIG Companion"
+	        android:maxLines="1"
+	        android:textAppearance="?android:attr/textAppearanceSmall"
+	        android:textColor="@color/text"
+	        android:visibility="gone" />
+	
+	    <Button
+	        android:id="@+id/actionBarButtonHome"
+	        style="?android:attr/buttonStyleSmall"
+	        android:layout_width="45dp"
+	        android:layout_height="41dp"
+	        android:layout_alignParentLeft="true"
+	        android:layout_alignParentTop="true"
+	        android:background="@drawable/actionbar_selector_button_home" />
+	
+	    <View
+	        android:id="@+id/actionBarSeparator2"
+	        android:layout_width="1dp"
+	        android:layout_height="41dp"
+	        android:layout_alignParentTop="true"
+	        android:layout_toRightOf="@+id/actionBarButtonHome"
+	        android:background="@color/grey" />
+	    
+	    <View
+	        android:id="@+id/actionBarBottomBorder"
+	        android:layout_width="fill_parent"
+	        android:layout_height="1dp"
+	        android:layout_below="@+id/actionBarButtonHome"
+	        android:background="@color/grey" />
+	    
+	    <Button
+		    android:id="@+id/searchBtn"
+		    style="?android:attr/buttonStyleSmall"
+		    android:layout_width="wrap_content"
+		    android:layout_height="36dp"
+		    android:layout_marginTop="4dp"
+		    android:layout_marginRight="3dp"
+		    android:layout_alignParentRight="true"
+		    android:text="Search" />
+	
+		<EditText
+		    android:id="@+id/searchText"
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent"
+		    android:selectAllOnFocus="true"
+		    android:layout_marginTop="2dp"
+		    android:layout_marginLeft="3dp"
+		    android:layout_alignParentTop="true"
+		    android:layout_toLeftOf="@+id/searchBtn"
+		    android:layout_toRightOf="@+id/actionBarButtonHome"
+		    android:hint="Search"
+		    android:inputType="textNoSuggestions"
+		    android:textAppearance="?android:attr/textAppearanceSmallInverse" >
+		    
+		    <requestFocus />
+		</EditText>
+    </RelativeLayout>
+
+</LinearLayout>

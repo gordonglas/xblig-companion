@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+   	<com.tokkisoft.XBLIGCActionBar
+        android:id="@+id/tokkiActionBar"
+        android:layout_width="fill_parent"
+	    android:layout_height="42dp"
+	    android:background="@drawable/actionbar_selector"
+	    android:layout_alignParentTop="true"
+        />
+    
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/tokkiActionBar"
+        android:layout_above="@+id/donateLayout"
+        android:padding="8dp"
+        android:background="@color/blue" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/aboutText"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="about text"
+                android:textColor="@color/text" />
+
+            <TextView
+                android:id="@+id/webLink"
+                android:layout_marginTop="14dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="Visit Tokki Soft on the web"
+                android:textColor="@color/text" />
+            
+            <TextView
+                android:id="@+id/twitterLink"
+                android:layout_marginTop="14dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"                
+                android:text="Follow TokkiSoft on Twitter"
+                android:textColor="@color/text" />
+            
+            <TextView
+                android:id="@+id/fbLink"
+                android:layout_marginTop="14dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+				android:text="Like Tokki Soft on Facebook"
+                android:textColor="@color/text" />
+            
+            <TextView
+                android:id="@+id/versionText"
+                android:layout_marginTop="14dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+				android:text="Version"
+                android:textColor="@color/text" />
+            
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/donateLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="62dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:background="@color/blue" >
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:maxLines="1"
+            android:text="You can support us by making a donation."
+            android:textColor="@color/text" />
+
+        <ImageView
+            android:id="@+id/donateImage"
+            android:layout_marginTop="3dp"
+            android:layout_width="fill_parent"
+            android:layout_height="36dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/btn_donate_lg" />
+
+    </LinearLayout>
+	
+</RelativeLayout>
